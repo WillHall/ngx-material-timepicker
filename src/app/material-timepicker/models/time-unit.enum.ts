@@ -1,4 +1,5 @@
 export enum TimeUnit {
-	HOUR,
-	MINUTE
+  HOUR,
+  MINUTE,
+  SECOND
 }
