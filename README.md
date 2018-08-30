@@ -1,3 +1,9 @@
+# This fork includes the ability to enable seconds. 
+use ```[enableSeconds]="true"``` on input and directive
+
+Also pulled out the Roboto inclusion - because honestly... if you don't have it then just deal with sans-serif.
+
+
 # ngx-material-timepicker
 
 Handy [material design](https://material.io/guidelines/components/pickers.html#pickers-time-pickers) timepicker for Angular 6.0+
