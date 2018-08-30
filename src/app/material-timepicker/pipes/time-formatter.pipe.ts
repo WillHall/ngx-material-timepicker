@@ -1,13 +1,13 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
-import {TimeUnit} from '../models/time-unit.enum';
+import { TimeUnit } from '../models/time-unit.enum';
 
 @Pipe({
 	name: 'timeFormatter'
 })
 export class TimeFormatterPipe implements PipeTransform {
 
-	transform(time: number, timeUnit: TimeUnit): any {
+  transform(time: number, timeUnit: TimeUnit): any {
 		if (!time) {
 			return time;
 		}

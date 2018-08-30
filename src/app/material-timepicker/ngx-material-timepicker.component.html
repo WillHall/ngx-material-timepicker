@@ -10,21 +10,19 @@
             (click)="changeTimeUnit(timeUnit.HOUR)">
             {{selectedHour?.time | timeFormatter: timeUnit.HOUR}}
           </span>
-          :
+          <span class="time-delimiter">:</span>
           <span
             class="timepicker-dial__item"
             [ngClass]="{'timepicker-dial__item_active': activeTimeUnit === timeUnit.MINUTE}"
             (click)="changeTimeUnit(timeUnit.MINUTE)">
             {{selectedMinute?.time | timeFormatter: timeUnit.MINUTE}}
           </span>
-
           <ng-container *ngIf="enableSeconds">
-            :
+            <span class="time-delimiter">:</span>
             <span
               class="timepicker-dial__item"
-              [ngClass]="{'timepicker-dial__item_active': activeTimeUnit === timeUnit.SECOND}"
-              (click)="changeTimeUnit(timeUnit.SECOND)">
-              {{selectedSecond?.time | timeFormatter: timeUnit.SECOND}}
+              [ngClass]="{'timepicker-dial__item_active': activeTimeUnit === timeUnit.SECOND}">
+              {{selectedSecond?.time | timeFormatter: timeUnit.MINUTE}}
             </span>
           </ng-container>
         </div>
@@ -74,6 +72,7 @@
           [minTime]="minTime"
           [maxTime]="maxTime"
           [period]="selectedPeriod"
+          (minuteSelected)="activeTimeUnit = enableSeconds ? timeUnit.SECOND : timeUnit.MINUTE"
           (minuteChange)="onMinuteChange($event)">
         </ngx-material-timepicker-minutes-face>
 
@@ -86,7 +85,7 @@
           [maxTime]="maxTime"
           [period]="selectedPeriod"
           (secondChange)="onSecondChange($event)">
-        </ngx-material-timepicker-minutes-face>
+        </ngx-material-timepicker-seconds-face>
       </div>
 
       <div class="timepicker__actions">
