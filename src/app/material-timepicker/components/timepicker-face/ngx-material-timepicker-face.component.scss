@@ -81,7 +81,8 @@ $clock-face-number-color: #6c6c6c;
     }
 }
 
-.clock-face__clock-hand_minute:before {
+.clock-face__clock-hand_minute:before,
+.clock-face__clock-hand_second:before {
     content: '';
     width: 7px;
     height: 7px;

@@ -39,6 +39,7 @@ export class NgxMaterialTimepickerComponent implements OnInit, OnDestroy {
 
     selectedHour: ClockFaceTime;
     selectedMinute: ClockFaceTime;
+    selectedSecond: ClockFaceTime;
     selectedPeriod: TimePeriod;
 
     timePeriod = TimePeriod;
@@ -54,6 +55,7 @@ export class NgxMaterialTimepickerComponent implements OnInit, OnDestroy {
 
     @Input() cancelBtnTmpl: TemplateRef<Node>;
     @Input() confirmBtnTmpl: TemplateRef<Node>;
+    @Input() enableSeconds: boolean = false;
     @Input('ESC') isEsc = true;
     @Output() timeSet = new EventEmitter<string>();
 
@@ -89,6 +91,9 @@ export class NgxMaterialTimepickerComponent implements OnInit, OnDestroy {
         this.subscriptions.push(this.timepickerService.selectedMinute
             .subscribe(minute => this.selectedMinute = minute));
 
+        this.subscriptions.push(this.timepickerService.selectedSecond
+            .subscribe(second => this.selectedSecond = second));
+
         this.subscriptions.push(this.timepickerService.selectedPeriod
             .subscribe(period => this.selectedPeriod = period));
     }
@@ -110,6 +115,10 @@ export class NgxMaterialTimepickerComponent implements OnInit, OnDestroy {
 
     onMinuteChange(minute: ClockFaceTime): void {
         this.timepickerService.minute = minute;
+    }
+
+    onSecondChange(second: ClockFaceTime): void {
+      this.timepickerService.second = second;
     }
 
     changePeriod(period: TimePeriod): void {

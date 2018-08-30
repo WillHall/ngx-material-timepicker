@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NgxMaterialTimepickerComponent} from './ngx-material-timepicker.component';
 import {StyleSanitizerPipe} from './pipes/style-sanitizer.pipe';
 import {NgxMaterialTimepickerMinutesFaceComponent} from './components/timepicker-minutes-face/ngx-material-timepicker-minutes-face.component';
+import { NgxMaterialTimepickerSecondsFaceComponent } from './components/timepicker-seconds-face/ngx-material-timepicker-seconds-face.component';
 import {NgxMaterialTimepickerService} from './services/ngx-material-timepicker.service';
 import {NgxMaterialTimepickerFaceComponent} from './components/timepicker-face/ngx-material-timepicker-face.component';
 import {TimeFormatterPipe} from './pipes/time-formatter.pipe';
@@ -31,6 +32,7 @@ import {NgxMaterialTimepicker24HoursFaceComponent} from './components/timepicker
         NgxMaterialTimepicker24HoursFaceComponent,
         NgxMaterialTimepicker12HoursFaceComponent,
         NgxMaterialTimepickerMinutesFaceComponent,
+        NgxMaterialTimepickerSecondsFaceComponent,
         NgxMaterialTimepickerFaceComponent,
         NgxMaterialTimepickerToggleComponent,
         StyleSanitizerPipe,

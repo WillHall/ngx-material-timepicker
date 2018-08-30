@@ -15,12 +15,17 @@ const DEFAULT_MINUTE: ClockFaceTime = {
     time: '00',
     angle: 360
 };
+const DEFAULT_SECOND: ClockFaceTime = {
+  time: '00',
+  angle: 360
+};
 
 @Injectable()
 export class NgxMaterialTimepickerService {
 
     private hourSubject = new BehaviorSubject<ClockFaceTime>(DEFAULT_HOUR);
     private minuteSubject = new BehaviorSubject<ClockFaceTime>(DEFAULT_MINUTE);
+    private secondSubject = new BehaviorSubject<ClockFaceTime>(DEFAULT_MINUTE);
     private periodSubject = new BehaviorSubject<TimePeriod>(TimePeriod.AM);
 
     set hour(hour: ClockFaceTime) {
@@ -39,6 +44,14 @@ export class NgxMaterialTimepickerService {
         return this.minuteSubject.asObservable();
     }
 
+    set second(second: ClockFaceTime) {
+      this.secondSubject.next(second);
+    }
+
+    get selectedSecond(): Observable<ClockFaceTime> {
+      return this.secondSubject.asObservable();
+    }
+
     set period(period: TimePeriod) {
         this.periodSubject.next(period);
     }
@@ -50,18 +63,20 @@ export class NgxMaterialTimepickerService {
     get fullTime(): string {
         const hour = this.hourSubject.getValue().time;
         const minute = this.minuteSubject.getValue().time;
+        const second = this.secondSubject.getValue().time;
         const period = this.periodSubject.getValue();
 
-        return `${hour}:${minute} ${period}`;
+        return `${hour}:${minute}${second ? ':' + second : ''} ${period}`;
     }
 
     set defaultTime(time: string) {
-        const defaultTime = moment(time, TimeFormat.TWENTY_FOUR).toDate();
+      const defaultTime = moment(time, TimeFormat.TWENTY_FOUR).toDate();
 
-        if (moment(defaultTime).isValid()) {
-            this.hour = {...DEFAULT_HOUR, time: defaultTime.getHours() === 0 ? '00' : defaultTime.getHours()};
-            this.minute = {...DEFAULT_MINUTE, time: defaultTime.getMinutes() === 0 ? '00' : defaultTime.getMinutes()};
-            this.period = <TimePeriod>time.substr(time.length - 2).toUpperCase();
-        }
+      if (moment(defaultTime).isValid()) {
+          this.hour = {...DEFAULT_HOUR, time: defaultTime.getHours() === 0 ? '00' : defaultTime.getHours()};
+          this.minute = {...DEFAULT_MINUTE, time: defaultTime.getMinutes() === 0 ? '00' : defaultTime.getMinutes()};
+          this.second = { ...DEFAULT_SECOND, time: defaultTime.getSeconds() === 0 ? '00' : defaultTime.getSeconds() };
+          this.period = <TimePeriod>time.substr(time.length - 2).toUpperCase();
+      }
     }
 }
